@@ -20,9 +20,8 @@ echo "Copying Headers..."
 cp -r OpenCV-android-sdk/sdk/native/jni/include/opencv2 android/app/src/main/cpp/include/
 
 echo "Copying Libs (arm64-v8a)..."
-# Копируем только нужные .so
-cp OpenCV-android-sdk/sdk/native/libs/arm64-v8a/libopencv_core.so android/app/src/main/jniLibs/arm64-v8a/
-cp OpenCV-android-sdk/sdk/native/libs/arm64-v8a/libopencv_imgproc.so android/app/src/main/jniLibs/arm64-v8a/
+# Копируем общую библиотеку OpenCV для Android SDK
+cp OpenCV-android-sdk/sdk/native/libs/arm64-v8a/libopencv_java4.so android/app/src/main/jniLibs/arm64-v8a/
 
 echo "Cleanup..."
 rm -rf OpenCV-android-sdk

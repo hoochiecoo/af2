@@ -6,22 +6,16 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 add_library(native-lib SHARED native-lib.cpp)
 
-# ✅ Подключаем prebuilt библиотеки OpenCV
-add_library(opencv_core SHARED IMPORTED)
-set_target_properties(opencv_core PROPERTIES
+# ✅ Подключаем prebuilt библиотеку OpenCV для Android SDK (libopencv_java4)
+add_library(opencv_java4 SHARED IMPORTED)
+set_target_properties(opencv_java4 PROPERTIES
     IMPORTED_LOCATION
-    ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libopencv_core.so)
-
-add_library(opencv_imgproc SHARED IMPORTED)
-set_target_properties(opencv_imgproc PROPERTIES
-    IMPORTED_LOCATION
-    ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libopencv_imgproc.so)
+    ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI}/libopencv_java4.so)
 
 find_library(log-lib log)
 
 target_link_libraries(
     native-lib
-    opencv_core
-    opencv_imgproc
+    opencv_java4
     ${log-lib}
 )
